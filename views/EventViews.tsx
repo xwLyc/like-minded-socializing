@@ -41,7 +41,7 @@ export const SquareView = ({ events, onEventClick, onCreateClick }: { events: Tr
    );
 };
 
-export const CreateView = ({ user, requirePhoneBinding, onBack }: { user: UserProfile, requirePhoneBinding: () => void, onBack: () => void }) => {
+export const CreateView = ({ user, onBack }: { user: UserProfile, requirePhoneBinding?: () => void, onBack: () => void }) => {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [type, setType] = useState(ACTIVITY_TYPES[0]);

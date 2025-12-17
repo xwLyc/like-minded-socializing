@@ -172,6 +172,46 @@ export const CreatePostModal = ({
   );
 };
 
+export const PhoneBindModal = ({ onClose, onBind }: { onClose: () => void, onBind: () => void }) => {
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}></div>
+      <div className="bg-white rounded-2xl p-6 w-full max-w-sm relative z-10 animate-scale-in">
+        <div className="text-center mb-6">
+          <div className="bg-brand-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-600">
+            <Smartphone size={24} />
+          </div>
+          <h3 className="text-xl font-bold text-gray-900">实名认证</h3>
+          <p className="text-gray-500 text-sm mt-2">
+            为了保障线下活动的安全，发布活动或申请加入前，请先绑定手机号。
+          </p>
+        </div>
+        
+        <div className="space-y-4 mb-6">
+          <input type="tel" placeholder="请输入手机号" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 outline-none focus:border-brand-500" />
+          <div className="flex space-x-2">
+            <input type="text" placeholder="验证码" className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 outline-none focus:border-brand-500" />
+            <button className="px-4 py-3 text-brand-600 font-medium text-sm bg-brand-50 rounded-lg whitespace-nowrap">获取验证码</button>
+          </div>
+        </div>
+
+        <button 
+          onClick={onBind}
+          className="w-full bg-brand-600 text-white py-3 rounded-xl font-bold text-lg shadow-lg hover:bg-brand-700"
+        >
+          立即绑定
+        </button>
+        <button 
+          onClick={onClose}
+          className="w-full mt-3 text-gray-400 text-sm py-2"
+        >
+          暂不绑定
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export const ManageApplicantsModal = ({ applicants, capacity, onClose, onApprove, onReject }: { applicants: Applicant[], capacity: number, onClose: () => void, onApprove: (id: string) => void, onReject: (id: string) => void }) => {
   const approvedCount = applicants.filter(a => a.status === 'approved').length;
   

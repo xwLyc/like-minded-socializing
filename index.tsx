@@ -12,12 +12,11 @@ import { LeaderboardView } from './views/LeaderboardView';
 import { PostDetailView } from './views/PostDetailView'; // New Import
 import { MessagesTab, NotificationListView, ChatRoomView } from './views/MessagesView';
 import { LoginView, ProfileView } from './views/UserViews';
-import { PhoneBindModal as PhoneBindModalComponent, CreatePostModal } from './modals';
+import { CreatePostModal } from './modals';
 
 const App = () => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [currentTab, setCurrentTab] = useState('square');
-  const [showPhoneModal, setShowPhoneModal] = useState(false);
   
   // Data State
   const [events, setEvents] = useState<TripEvent[]>(MOCK_EVENTS);
@@ -54,18 +53,6 @@ const App = () => {
     setSelectedEvent(null);
     setSelectedPost(null);
     setActiveChatId(null);
-  };
-
-  const handleBindPhone = () => {
-    if (!user) return;
-    const updatedUser = { ...user, isPhoneVerified: true };
-    setUser(updatedUser);
-    localStorage.setItem('mock_user_v2', JSON.stringify(updatedUser));
-    setShowPhoneModal(false);
-  };
-
-  const triggerBindPhone = () => {
-    setShowPhoneModal(true);
   };
 
   const handleCreatePost = (postData: { eventId: string, eventTitle: string, content: string, image: string }) => {
@@ -196,12 +183,11 @@ const App = () => {
         <EventDetailView 
            event={selectedEvent} 
            onBack={() => setSelectedEvent(null)} 
-           requirePhoneBinding={triggerBindPhone}
+           requirePhoneBinding={() => {}} // No-op as functionality removed
            user={user}
            onUpdateEvent={handleUpdateEvent}
            onCreateChat={handleCreateChat}
         />
-        {showPhoneModal && <PhoneBindModalComponent onClose={() => setShowPhoneModal(false)} onBind={handleBindPhone} />}
       </div>
     );
   }
@@ -227,12 +213,6 @@ const App = () => {
            onBack={() => setShowLeaderboard(false)}
            onPostClick={(post) => {
               setSelectedPost(post);
-              // Do not close leaderboard, just stack on top? Or close?
-              // Let's close Leaderboard when opening detail to avoid double stack issues in this simple router
-              // Or keep leaderboard open in background. For simple stack, let's keep leaderboard open.
-              // Wait, the return statement above handles selectedPost priority. 
-              // So if selectedPost is set, it renders. When onBack is called on PostDetail, selectedPost becomes null, app re-renders,
-              // showLeaderboard is still true, so it goes back to Leaderboard. Perfect.
            }}
         />
       </div>
@@ -247,13 +227,7 @@ const App = () => {
            <SquareView 
              events={events} 
              onEventClick={setSelectedEvent} 
-             onCreateClick={() => {
-                if(!user.isPhoneVerified) {
-                   triggerBindPhone();
-                } else {
-                   setShowCreateEvent(true);
-                }
-             }}
+             onCreateClick={() => setShowCreateEvent(true)}
            />
         )}
         {currentTab === 'gallery' && (
@@ -276,7 +250,7 @@ const App = () => {
            <ProfileView 
              user={user} 
              onLogout={handleLogout} 
-             onBindPhone={triggerBindPhone} 
+             onBindPhone={() => {}} // No-op
            />
         )}
       </div>
@@ -286,7 +260,6 @@ const App = () => {
       {showCreateEvent && (
          <CreateView 
            user={user} 
-           requirePhoneBinding={triggerBindPhone} 
            onBack={() => setShowCreateEvent(false)} 
          />
       )}
@@ -299,7 +272,6 @@ const App = () => {
             onSubmit={handleCreatePost}
          />
       )}
-      {showPhoneModal && <PhoneBindModalComponent onClose={() => setShowPhoneModal(false)} onBind={handleBindPhone} />}
     
       <button 
         onClick={simulateIncomingNotification}

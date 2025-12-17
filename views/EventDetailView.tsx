@@ -8,14 +8,13 @@ import { ApplyModal, ManageApplicantsModal } from '../modals';
 export const EventDetailView = ({ 
   event, 
   onBack, 
-  requirePhoneBinding, 
   user,
   onUpdateEvent,
   onCreateChat 
 }: { 
   event: TripEvent, 
   onBack: () => void, 
-  requirePhoneBinding: () => void, 
+  requirePhoneBinding: () => void, // Kept in signature to avoid parent break, unused
   user: UserProfile,
   onUpdateEvent: (e: TripEvent) => void,
   onCreateChat: (e: TripEvent) => void
@@ -73,9 +72,6 @@ export const EventDetailView = ({
 
     return Array.from(threadMap.entries()).map(([ownerId, msgs]) => ({
        owner: inquirerInfoMap.get(ownerId)!,
-       // SORT LOGIC FIXED: We rely on the natural array order (chronological insertion).
-       // Previously, sorting by ID string caused new numeric timestamp IDs (e.g., "17...") to appear 
-       // before mock string IDs (e.g., "c1..."), breaking the chat flow.
        messages: msgs
     }));
   }, [comments, event.organizer.id]);
@@ -84,10 +80,6 @@ export const EventDetailView = ({
 
   const handleStartNewConsultation = () => {
     if (!newQuestion.trim()) return;
-    if (!user.isPhoneVerified) {
-      requirePhoneBinding();
-      return;
-    }
     const comment: Comment = {
       id: Date.now().toString(),
       userId: user.id,
@@ -102,10 +94,6 @@ export const EventDetailView = ({
   };
 
   const handleReplyToThread = (threadOwnerId: string, text: string) => {
-     if (!user.isPhoneVerified) {
-        requirePhoneBinding();
-        return;
-     }
      const comment: Comment = {
         id: Date.now().toString(),
         userId: user.id,
@@ -203,7 +191,7 @@ export const EventDetailView = ({
                 <div>
                    <div className="font-bold text-gray-900 flex items-center">
                       {event.organizer.name}
-                      {event.organizer.isPhoneVerified && <CheckCircle size={14} className="text-blue-500 ml-1" fill="currentColor" color="white"/>}
+                      <CheckCircle size={14} className="text-blue-500 ml-1" fill="currentColor" color="white"/>
                    </div>
                    <div className="text-xs text-gray-500">发起人信用良好</div>
                 </div>
@@ -318,13 +306,7 @@ export const EventDetailView = ({
                      </button>
                   ) : (
                      <button 
-                        onClick={() => {
-                           if (!user.isPhoneVerified) {
-                              requirePhoneBinding();
-                           } else {
-                              setShowApplyModal(true);
-                           }
-                        }}
+                        onClick={() => setShowApplyModal(true)}
                         className="w-full bg-brand-600 text-white py-3 rounded-xl font-bold text-lg shadow-lg hover:bg-brand-700 active:scale-95 transition-transform"
                      >
                         申请加入

@@ -10,7 +10,6 @@ export const MOCK_USER: UserProfile = {
   name: '老张',
   gender: 'male',
   avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix',
-  isPhoneVerified: false, 
 };
 
 // Simplified mock helper
@@ -69,7 +68,7 @@ export const MOCK_EVENTS: TripEvent[] = [
     tags: ['棋牌'],
     ageRange: '退休人员',
     genderReq: '不限',
-    organizer: { id: 'o1', name: '王姨', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka', isPhoneVerified: true },
+    organizer: { id: 'o1', name: '王姨', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka' },
     capacity: 4,
     enrolled: 3,
     status: 'recruiting',
@@ -85,7 +84,7 @@ export const MOCK_EVENTS: TripEvent[] = [
     tags: ['运动'],
     ageRange: '不限',
     genderReq: '不限',
-    organizer: { id: 'o3', name: '陈姐', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Cathy', isPhoneVerified: true },
+    organizer: { id: 'o3', name: '陈姐', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Cathy' },
     capacity: 6,
     enrolled: 6,
     status: 'full',
@@ -102,7 +101,7 @@ export const MOCK_EVENTS: TripEvent[] = [
     tags: ['运动', '其他'],
     ageRange: '不限',
     genderReq: '限男性',
-    organizer: { ...MOCK_USER, isPhoneVerified: true },
+    organizer: { ...MOCK_USER },
     capacity: 4,
     enrolled: 2,
     status: 'recruiting',
@@ -119,7 +118,7 @@ export const MOCK_EVENTS: TripEvent[] = [
 export const MOCK_POSTS: Post[] = [
   {
     id: 'p1',
-    author: { id: 'm1', name: '快乐外婆', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Granny', isPhoneVerified: true },
+    author: { id: 'm1', name: '快乐外婆', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Granny' },
     images: [
       'https://images.unsplash.com/photo-1527668752968-14a708d18486?w=800&auto=format&fit=crop&q=60',
       'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&auto=format&fit=crop&q=60'
@@ -134,7 +133,7 @@ export const MOCK_POSTS: Post[] = [
   },
   {
     id: 'p2',
-    author: { id: 'm2', name: '强哥', gender: 'male', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John', isPhoneVerified: true },
+    author: { id: 'm2', name: '强哥', gender: 'male', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John' },
     images: ['https://images.unsplash.com/photo-1623696144896-1c7c91728131?w=800&auto=format&fit=crop&q=60'],
     content: '今天的麻将局打得太开心了，虽然没赢，但是认识了几个新邻居。下次争取自摸！',
     likes: 89,
@@ -146,7 +145,7 @@ export const MOCK_POSTS: Post[] = [
   },
   {
     id: 'p3',
-    author: { id: 'm3', name: '刘摄', gender: 'male', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bob', isPhoneVerified: true },
+    author: { id: 'm3', name: '刘摄', gender: 'male', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bob' },
     images: [
       'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&auto=format&fit=crop&q=60',
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=60',
@@ -162,7 +161,7 @@ export const MOCK_POSTS: Post[] = [
   },
   {
     id: 'p4',
-    author: { id: 'm4', name: '赵姐', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sara', isPhoneVerified: true },
+    author: { id: 'm4', name: '赵姐', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sara' },
     images: ['https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&auto=format&fit=crop&q=60'],
     content: '爬完山大家一起聚餐，AA制很划算，味道也不错。推荐这家的鱼头泡饼。',
     likes: 35,
@@ -174,7 +173,7 @@ export const MOCK_POSTS: Post[] = [
   },
   {
     id: 'p5',
-    author: { id: 'm5', name: '王叔', gender: 'male', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix', isPhoneVerified: true },
+    author: { id: 'm5', name: '王叔', gender: 'male', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix' },
     images: ['https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&auto=format&fit=crop&q=60'],
     content: '老哥几个好久没聚了，今天喝得有点多，哈哈。',
     likes: 12,
@@ -207,7 +206,7 @@ export const MOCK_HISTORY_CHAMPIONS: HistoryChampion[] = [
   {
      id: 'h1',
      month: '2023年9月',
-     winner: { id: 'w1', name: '摄影小刘', gender: 'male', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bob', isPhoneVerified: true },
+     winner: { id: 'w1', name: '摄影小刘', gender: 'male', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bob' },
      likes: 128,
      postImages: ['https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&auto=format&fit=crop&q=60'],
      postContent: '密云水库的日出，真的太美了！感谢大家的支持！'
@@ -215,7 +214,7 @@ export const MOCK_HISTORY_CHAMPIONS: HistoryChampion[] = [
   {
      id: 'h2',
      month: '2023年8月',
-     winner: { id: 'w2', name: '赵阿姨', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sara', isPhoneVerified: true },
+     winner: { id: 'w2', name: '赵阿姨', gender: 'female', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sara' },
      likes: 105,
      postImages: ['https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&auto=format&fit=crop&q=60'],
      postContent: '带着孙子去草原天路，一路欢声笑语。'

@@ -4,7 +4,6 @@ export interface UserProfile {
   name: string;
   gender: 'male' | 'female';
   avatar: string;
-  isPhoneVerified: boolean;
 }
 
 export interface Comment {

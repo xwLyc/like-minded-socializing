@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { UserProfile } from '../types';
-import { Users2, MessageCircle, LogOut, CheckCircle, Smartphone, ChevronRight } from 'lucide-react';
+import { Users2, MessageCircle, LogOut, CheckCircle, ChevronRight, ShieldCheck } from 'lucide-react';
 import { AvatarWithGender } from '../components';
 
 export const LoginView = ({ onLogin }: { onLogin: () => void }) => (
@@ -28,11 +28,10 @@ export const LoginView = ({ onLogin }: { onLogin: () => void }) => (
 export const ProfileView = ({ 
   user, 
   onLogout, 
-  onBindPhone,
 }: { 
   user: UserProfile, 
   onLogout: () => void, 
-  onBindPhone: () => void,
+  onBindPhone: () => void, // Kept in prop signature to avoid breaking parent, but unused
 }) => {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
@@ -45,15 +44,9 @@ export const ProfileView = ({
               <span className={`text-xs px-2 py-0.5 rounded-full border ${user.gender === 'male' ? 'border-blue-200 text-blue-600 bg-blue-50' : 'border-pink-200 text-pink-600 bg-pink-50'}`}>
                 {user.gender === 'male' ? '男' : '女'}
               </span>
-              {user.isPhoneVerified ? (
-                 <span className="flex items-center text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
-                   <CheckCircle size={12} className="mr-1"/> 已实名
-                 </span>
-              ) : (
-                <button onClick={onBindPhone} className="flex items-center text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full animate-pulse">
-                   <Smartphone size={12} className="mr-1"/> 未绑定手机
-                 </button>
-              )}
+              <span className="flex items-center text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                <ShieldCheck size={12} className="mr-1"/> 微信已认证
+              </span>
             </div>
           </div>
         </div>

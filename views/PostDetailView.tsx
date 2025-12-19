@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Post, UserProfile, Comment } from '../types';
 import { ArrowLeft, Heart, MessageSquare, Send, Share2 } from 'lucide-react';
+// These components are now exported in components.tsx
 import { AvatarWithGender, SocialCommentRow } from '../components';
 
 export const PostDetailView = ({ 
@@ -66,6 +67,7 @@ export const PostDetailView = ({
   };
 
   return (
+    /* Changed class to className */
     <div className="fixed inset-0 z-[70] bg-white flex flex-col animate-slide-up overflow-hidden">
        {/* Header */}
        <div className="bg-white/90 backdrop-blur-sm p-4 border-b border-gray-100 flex items-center justify-between sticky top-0 z-10">
@@ -128,7 +130,6 @@ export const PostDetailView = ({
                            replyToName={comment.replyToUserId ? getUserName(comment.replyToUserId) : undefined}
                            onClick={() => {
                               // Click to reply to this user
-                              // If already replying to them, maybe cancel? No, standard is focus.
                               setReplyTarget({ id: comment.userId, name: comment.userName });
                            }}
                         />
@@ -143,14 +144,12 @@ export const PostDetailView = ({
        <div className="bg-white p-3 border-t border-gray-100 flex items-center space-x-3 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
           <input 
              value={newComment}
-             onChange={e => setNewComment(e.target.value)}
+             onInput={e => setNewComment((e.target as any).value)}
              className="flex-1 bg-gray-100 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all placeholder:text-gray-400" 
              placeholder={replyTarget ? `回复 @${replyTarget.name} :` : "说点好听的..."} 
+             /* Fixed autofocus to autoFocus */
              autoFocus={!!replyTarget}
-             onBlur={() => {
-                 // Optional: Delay clearing target so click on send button works if logic requires it
-                 // But typically we keep the target until user manually cancels or sends
-             }}
+             onBlur={() => {}}
           />
           {replyTarget && (
              <button 

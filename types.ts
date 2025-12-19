@@ -4,6 +4,7 @@ export interface UserProfile {
   name: string;
   gender: 'male' | 'female';
   avatar: string;
+  ageGroup?: string;
 }
 
 export interface Comment {
@@ -13,7 +14,8 @@ export interface Comment {
   userAvatar: string;
   content: string;
   timestamp: string;
-  replyToUserId?: string; // ID of the user being replied to (links organizer msg to inquirer)
+  replyToUserId?: string; 
+  replyToUserName?: string;
 }
 
 export interface Applicant {

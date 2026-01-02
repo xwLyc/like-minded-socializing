@@ -20,7 +20,6 @@ export const LeaderboardView = ({
   const sortedPosts = [...currentMonthPosts].sort((a, b) => b.likes - a.likes);
 
   const getRankBadge = (index: number) => {
-    /* Changed class to className */
     if (index === 0) return <Trophy size={20} className="text-yellow-500" fill="currentColor" />;
     if (index === 1) return <Medal size={20} className="text-gray-400" fill="currentColor" />;
     if (index === 2) return <Medal size={20} className="text-orange-600" fill="currentColor" />;
@@ -41,7 +40,6 @@ export const LeaderboardView = ({
      <div 
        key={id} 
        onClick={onClick}
-       /* Changed class to className */
        className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex items-center active:scale-[0.98] transition-transform cursor-pointer relative overflow-hidden mb-3"
      >
         {/* Rank Badge */}
@@ -72,7 +70,6 @@ export const LeaderboardView = ({
   );
 
   return (
-    /* Changed class to className */
     <div className="fixed inset-0 z-[60] bg-gray-50 flex flex-col animate-slide-up">
        <div className="bg-white p-4 border-b border-gray-100 flex items-center shadow-sm z-10 sticky top-0">
           <button onClick={onBack} className="p-2 -ml-2 text-gray-600 hover:bg-gray-100 rounded-full">

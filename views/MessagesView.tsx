@@ -18,7 +18,6 @@ export const MessagesTab = ({
   const unreadNotes = notifications.filter(n => !n.isRead).length;
 
   return (
-    /* Changed class to className */
     <div className="pb-20 min-h-screen bg-gray-50">
        <div className="bg-white sticky top-0 flex items-center p-4 border-b border-gray-100 shadow-sm z-10">
           <span className="font-bold text-lg">消息</span>
@@ -93,7 +92,6 @@ export const NotificationListView = ({
   onItemClick: (n: Notification) => void 
 }) => {
   return (
-    /* Changed class to className */
     <div className="min-h-screen bg-gray-50 z-[60] relative">
        <div className="bg-white sticky top-0 flex items-center p-4 border-b border-gray-100 shadow-sm z-10">
           <button onClick={onBack} className="p-2 -ml-2 text-gray-600 hover:bg-gray-100 rounded-full">
@@ -164,7 +162,6 @@ export const ChatRoomView = ({ chat, user, onBack }: { chat: ChatSession, user: 
    };
 
    return (
-      /* Changed class to className */
       <div className="fixed inset-0 z-[70] bg-gray-100 flex flex-col animate-slide-up">
          <div className="bg-white p-4 shadow-sm flex items-center sticky top-0 z-10">
             <button onClick={onBack} className="p-2 -ml-2 text-gray-600"><ArrowLeft size={24} /></button>
@@ -200,9 +197,8 @@ export const ChatRoomView = ({ chat, user, onBack }: { chat: ChatSession, user: 
          <div className="bg-white p-3 pb-safe border-t border-gray-200 flex items-center space-x-3">
             <input 
                value={inputText}
-               onInput={e => setInputText((e.target as any).value)}
-               /* Fixed onkeydown to onKeyDown and handled typing */
-               onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handleSend()}
+               onChange={e => setInputText(e.target.value)}
+               onKeyDown={e => e.key === 'Enter' && handleSend()}
                className="flex-1 bg-gray-100 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all" 
                placeholder="说点什么..." 
             />

@@ -4,7 +4,8 @@ export interface UserProfile {
   name: string;
   gender: 'male' | 'female';
   avatar: string;
-  ageGroup?: string;
+  // Added isPhoneVerified property to support display of verification badges in UI components
+  isPhoneVerified?: boolean;
 }
 
 export interface Comment {
@@ -14,8 +15,7 @@ export interface Comment {
   userAvatar: string;
   content: string;
   timestamp: string;
-  replyToUserId?: string; 
-  replyToUserName?: string;
+  replyToUserId?: string; // ID of the user being replied to (links organizer msg to inquirer)
 }
 
 export interface Applicant {

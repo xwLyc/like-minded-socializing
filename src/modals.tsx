@@ -8,7 +8,6 @@ export const ApplyModal = ({ eventTitle, onClose, onConfirm }: { eventTitle: str
   const [intro, setIntro] = useState('');
 
   return (
-    /* Changed class to className */
     <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}></div>
        <div className="bg-white rounded-2xl p-6 w-full max-w-sm relative z-10 animate-scale-in shadow-2xl">
@@ -20,10 +19,9 @@ export const ApplyModal = ({ eventTitle, onClose, onConfirm }: { eventTitle: str
                 自我介绍（投名状）<span className="text-red-500">*</span>
              </label>
              <textarea 
-               /* Changed autofocus to autoFocus */
                autoFocus
                value={intro}
-               onInput={e => setIntro((e.target as any).value)}
+               onChange={e => setIntro(e.target.value)}
                placeholder="简单介绍一下自己，比如：性格随和、有驾照、经常参加此类活动等。这能大大提高通过率哦！"
                className="w-full h-32 bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-200 transition-all resize-none"
              />
@@ -102,7 +100,6 @@ export const CreatePostModal = ({
   };
 
   return (
-    /* Changed class to className */
     <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}></div>
        <div className="bg-white rounded-2xl p-6 w-full max-w-sm relative z-10 animate-scale-in shadow-2xl">
@@ -123,7 +120,7 @@ export const CreatePostModal = ({
                  <label className="block text-sm font-bold text-gray-700 mb-2">选择活动</label>
                  <select 
                    value={selectedEventId}
-                   onInput={e => setSelectedEventId((e.target as any).value)}
+                   onChange={e => setSelectedEventId(e.target.value)}
                    className="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 outline-none focus:border-brand-500"
                  >
                    {eligibleEvents.map(e => (
@@ -136,7 +133,7 @@ export const CreatePostModal = ({
                  <label className="block text-sm font-bold text-gray-700 mb-2">分享您的体验</label>
                  <textarea 
                    value={content}
-                   onInput={e => setContent((e.target as any).value)}
+                   onChange={e => setContent(e.target.value)}
                    placeholder="活动怎么样？认识了新朋友吗？"
                    className="w-full h-24 bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm outline-none focus:border-brand-500 resize-none"
                  />
@@ -177,7 +174,6 @@ export const CreatePostModal = ({
 
 export const PhoneBindModal = ({ onClose, onBind }: { onClose: () => void, onBind: () => void }) => {
   return (
-    /* Changed class to className */
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}></div>
       <div className="bg-white rounded-2xl p-6 w-full max-w-sm relative z-10 animate-scale-in">
@@ -220,7 +216,6 @@ export const ManageApplicantsModal = ({ applicants, capacity, onClose, onApprove
   const approvedCount = applicants.filter(a => a.status === 'approved').length;
   
   return (
-    /* Changed class to className */
     <div className="fixed inset-0 z-[80] flex items-center justify-center p-4">
        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}></div>
        <div className="bg-white rounded-2xl p-6 w-full max-w-sm relative z-10 animate-scale-in shadow-2xl max-h-[80vh] flex flex-col">
@@ -658,7 +653,6 @@ export default function Detail() {
    };
 
    return (
-      /* Changed class to className */
       <div className="fixed inset-0 z-[100] bg-gray-900 flex flex-col animate-scale-in">
          {/* Header */}
          <div className="bg-gray-800 p-3 border-b border-gray-700 flex justify-between items-center shrink-0">
